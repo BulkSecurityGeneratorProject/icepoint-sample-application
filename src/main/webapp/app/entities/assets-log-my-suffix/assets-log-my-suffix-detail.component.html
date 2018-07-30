@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="assetsLog">
+            <h2><span>Assets Log</span> {{assetsLog.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Digital Code</span></dt>
+                <dd>
+                    <span>{{assetsLog.digitalCode}}</span>
+                </dd>
+                <dt><span>Cust Id</span></dt>
+                <dd>
+                    <span>{{assetsLog.custId}}</span>
+                </dd>
+                <dt><span>Security Account Code</span></dt>
+                <dd>
+                    <span>{{assetsLog.securityAccountCode}}</span>
+                </dd>
+                <dt><span>Assets Type</span></dt>
+                <dd>
+                    <span>{{assetsLog.assetsType}}</span>
+                </dd>
+                <dt><span>Assets Code</span></dt>
+                <dd>
+                    <span>{{assetsLog.assetsCode}}</span>
+                </dd>
+                <dt><span>Assets Subtype</span></dt>
+                <dd>
+                    <span>{{assetsLog.assetsSubtype}}</span>
+                </dd>
+                <dt><span>Trans Datetime</span></dt>
+                <dd>
+                    <span>{{assetsLog.transDatetime}}</span>
+                </dd>
+                <dt><span>Trade Amt</span></dt>
+                <dd>
+                    <span>{{assetsLog.tradeAmt}}</span>
+                </dd>
+                <dt><span>Fee Amt</span></dt>
+                <dd>
+                    <span>{{assetsLog.feeAmt}}</span>
+                </dd>
+                <dt><span>Start Bal</span></dt>
+                <dd>
+                    <span>{{assetsLog.startBal}}</span>
+                </dd>
+                <dt><span>End Bal</span></dt>
+                <dd>
+                    <span>{{assetsLog.endBal}}</span>
+                </dd>
+                <dt><span>Trade Obj Type</span></dt>
+                <dd>
+                    <span>{{assetsLog.tradeObjType}}</span>
+                </dd>
+                <dt><span>Trade Obj Id</span></dt>
+                <dd>
+                    <span>{{assetsLog.tradeObjId}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{assetsLog.description}}</span>
+                </dd>
+                <dt><span>Remark</span></dt>
+                <dd>
+                    <span>{{assetsLog.remark}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/assets-log-my-suffix', assetsLog.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

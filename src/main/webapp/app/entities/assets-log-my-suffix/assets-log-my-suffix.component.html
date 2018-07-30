@@ -1,0 +1,82 @@
+<div>
+    <h2 id="page-heading">
+        <span>Assets Logs</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-assets-log-my-suffix" [routerLink]="['/assets-log-my-suffix/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Assets Log
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="assetsLogs">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Digital Code</span></th>
+            <th><span>Cust Id</span></th>
+            <th><span>Security Account Code</span></th>
+            <th><span>Assets Type</span></th>
+            <th><span>Assets Code</span></th>
+            <th><span>Assets Subtype</span></th>
+            <th><span>Trans Datetime</span></th>
+            <th><span>Trade Amt</span></th>
+            <th><span>Fee Amt</span></th>
+            <th><span>Start Bal</span></th>
+            <th><span>End Bal</span></th>
+            <th><span>Trade Obj Type</span></th>
+            <th><span>Trade Obj Id</span></th>
+            <th><span>Description</span></th>
+            <th><span>Remark</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let assetsLog of assetsLogs ;trackBy: trackId">
+                <td><a [routerLink]="['/assets-log-my-suffix', assetsLog.id, 'view' ]">{{assetsLog.id}}</a></td>
+                <td>{{assetsLog.digitalCode}}</td>
+                <td>{{assetsLog.custId}}</td>
+                <td>{{assetsLog.securityAccountCode}}</td>
+                <td>{{assetsLog.assetsType}}</td>
+                <td>{{assetsLog.assetsCode}}</td>
+                <td>{{assetsLog.assetsSubtype}}</td>
+                <td>{{assetsLog.transDatetime | date:'medium'}}</td>
+                <td>{{assetsLog.tradeAmt}}</td>
+                <td>{{assetsLog.feeAmt}}</td>
+                <td>{{assetsLog.startBal}}</td>
+                <td>{{assetsLog.endBal}}</td>
+                <td>{{assetsLog.tradeObjType}}</td>
+                <td>{{assetsLog.tradeObjId}}</td>
+                <td>{{assetsLog.description}}</td>
+                <td>{{assetsLog.remark}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/assets-log-my-suffix', assetsLog.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/assets-log-my-suffix', assetsLog.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'assets-log-my-suffix/'+ assetsLog.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
