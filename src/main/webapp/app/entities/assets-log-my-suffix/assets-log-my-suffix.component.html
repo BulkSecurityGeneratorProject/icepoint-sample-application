@@ -1,0 +1,82 @@
+<div>
+    <h2 id="page-heading">
+        <span>Assets Logs</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-assets-log-my-suffix" [routerLink]="['/assets-log-my-suffix/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Assets Log
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="assetsLogs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="digitalCode"><span>Digital Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="custId"><span>Cust Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="securityAccountCode"><span>Security Account Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assetsType"><span>Assets Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assetsCode"><span>Assets Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assetsSubtype"><span>Assets Subtype</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transDatetime"><span>Trans Datetime</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tradeAmt"><span>Trade Amt</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="feeAmt"><span>Fee Amt</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="startBal"><span>Start Bal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="endBal"><span>End Bal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tradeObjType"><span>Trade Obj Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tradeObjId"><span>Trade Obj Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="remark"><span>Remark</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let assetsLog of assetsLogs ;trackBy: trackId">
+                <td><a [routerLink]="['/assets-log-my-suffix', assetsLog.id, 'view' ]">{{assetsLog.id}}</a></td>
+                <td>{{assetsLog.digitalCode}}</td>
+                <td>{{assetsLog.custId}}</td>
+                <td>{{assetsLog.securityAccountCode}}</td>
+                <td>{{assetsLog.assetsType}}</td>
+                <td>{{assetsLog.assetsCode}}</td>
+                <td>{{assetsLog.assetsSubtype}}</td>
+                <td>{{assetsLog.transDatetime | date:'medium'}}</td>
+                <td>{{assetsLog.tradeAmt}}</td>
+                <td>{{assetsLog.feeAmt}}</td>
+                <td>{{assetsLog.startBal}}</td>
+                <td>{{assetsLog.endBal}}</td>
+                <td>{{assetsLog.tradeObjType}}</td>
+                <td>{{assetsLog.tradeObjId}}</td>
+                <td>{{assetsLog.description}}</td>
+                <td>{{assetsLog.remark}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/assets-log-my-suffix', assetsLog.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/assets-log-my-suffix', assetsLog.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'assets-log-my-suffix/'+ assetsLog.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
